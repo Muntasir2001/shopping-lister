@@ -25,7 +25,7 @@ body {
 
 /* homepage */
 /* notify */
-.notify {
+.warning {
    border: 4px solid #D9004C;
    margin-top: 20px;
    color: #E3E3E3;
@@ -35,11 +35,15 @@ body {
    background: rgb(217,0,76, 0.4);
 }
 
-.notify-open {
+.warning-open, #warning {
    display: flex;
 }
 
-.notify h5 {
+.warning-close {
+   display: none;
+}
+
+.warning h5 {
    font-size: 2rem;
 }
 
