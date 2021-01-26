@@ -1,31 +1,24 @@
 //setting scroll to zero
 window.scrollTo(0, 0);
 
+console.log(firebase);
+
 //setting notify system
 const notify = document.querySelector('.warning');
 
 function hideMssg() {
-   // console.log("i am here 6");
    notify.classList.remove("warning-open");
    notify.classList.add("warning-close");
-   // console.log("i am here 7");
-   console.log(notify.classList);  
 }
 
 function showMssg() {
-   // console.log("i am here 4");
    notify.classList.remove("warning-close");
    notify.classList.add("warning-open");
-   // console.log("i am here 5");
-   console.log(notify.classList); 
 }
 
 function notifyControl() {
-   // console.log("i am here 1");
    showMssg();
-   // console.log("i am here 2");
    setTimeout(hideMssg, 5000);
-   // console.log("i am here 3");  
 }
 
 // window.addEventListener('DOMContentLoaded', (e) => {
@@ -84,9 +77,9 @@ function addItem(e) {
       inputField.value = '';
 
       //prevent default
-      e.preventDefault();
    }
    
+   e.preventDefault();
 }
 
 //delete item
