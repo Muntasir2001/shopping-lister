@@ -30,17 +30,17 @@
       <h3>Your List of Items</h3>
    </div>
    <div class="container item-list">
-      <div class="item">
+      <!-- <div class="item">
          <p>5 bananas</p>
-         <a class="edit" href="#">Edit</a>
+         <a class="edit" href="#">Edit</a> 
          <a class="delete" href="#">Delete</a>
       </div>
       <div class="item">
          <p>Milk</p>
-         <a class="edit" href="#">Edit</a>
+         <a class="edit" href="#">Edit</a> 
          <a class="delete" href="#">Delete</a>
-      </div>
-      <div class="item">
+      </div> -->
+      <!-- <div class="item">
          <p>4 Apples</p>
          <a class="edit" href="#">Edit</a>
          <a class="delete" href="#">Delete</a>
@@ -49,9 +49,38 @@
          <p>10 Lemons</p>
          <a class="edit" href="#">Edit</a>
          <a class="delete" href="#">Delete</a>
-      </div>
+      </div> -->
    </div>
 
    <script src="app.js"></script>
+
+   <!-- firebase -->
+   <!-- The core Firebase JS SDK is always required and must be listed first -->
+   <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-app.js"></script>
+
+   <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+   <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-analytics.js"></script>
+
+   <!-- firestore -->
+   <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-firestore.js"></script>
+
+   <script>
+   // Your web app's Firebase configuration
+   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+   var firebaseConfig = {
+      apiKey: "AIzaSyCwBELiVERyghwohaaUmgzGVmbLCGrNA_Q",
+      authDomain: "shopping-lister-f41d3.firebaseapp.com",
+      databaseURL: "https://shopping-lister-f41d3-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "shopping-lister-f41d3",
+      storageBucket: "shopping-lister-f41d3.appspot.com",
+      messagingSenderId: "131972953413",
+      appId: "1:131972953413:web:2c508cc59d6a8c215cba2c",
+      measurementId: "G-GDTMCHGPNK"
+   };
+   // Initialize Firebase
+   firebase.initializeApp(firebaseConfig);
+   firebase.analytics();
+   </script>
 </body>
 </html>

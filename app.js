@@ -1,4 +1,7 @@
-//JS codes below is not working properly at the moment
+//setting scroll to zero
+window.scrollTo(0, 0);
+
+//setting notify system
 const notify = document.querySelector('.warning');
 
 function hideMssg() {
@@ -38,7 +41,7 @@ const itemList = document.querySelector('.item-list');
 
 //event listeners
 form.addEventListener('submit', addItem);
-
+itemList.addEventListener('mouseup', deleteItem);
 
 //add item
 function addItem(e) {
@@ -50,28 +53,28 @@ function addItem(e) {
       const p = document.createElement('p');
 
       //create a tag for edit and delete
-      const aEdit  = document.createElement('a');
+      // const aEdit  = document.createElement('a');
       const aDel = document.createElement('a');
 
       //give class name
       div.className = 'item';
-      aEdit.className = 'edit';
+      // aEdit.className = 'edit';
       aDel.className = 'delete';
 
       //set attribute for edit and delete button
-      aEdit.setAttribute('href', '#');
+      // aEdit.setAttribute('href', '#');
       aDel.setAttribute('href', '#');
 
       //append text in p
       p.appendChild(document.createTextNode(inputField.value));
 
       //append text in edit and delete button
-      aEdit.appendChild(document.createTextNode('Edit'));
+      // aEdit.appendChild(document.createTextNode('Edit'));
       aDel.appendChild(document.createTextNode('Delete'));
 
       //append p, edit and delete button inside div (.item)
       div.appendChild(p);
-      div.appendChild(aEdit);
+      // div.appendChild(aEdit);s
       div.appendChild(aDel);
 
       //append div (.item) inside the main div (.item-list)
@@ -83,4 +86,15 @@ function addItem(e) {
       //prevent default
       e.preventDefault();
    }
+   
+}
+
+//delete item
+function deleteItem(e) {
+   if (e.target.classList.contains('delete')) {
+      e.target.parentElement.remove();
+   }
+
+   //prevent default
+   e.preventDefault();
 }
