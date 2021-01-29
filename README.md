@@ -5,4 +5,4 @@ The objective of this project is to create a simple application which would allo
 The UI is developed using HTML, CSS, Bootstrap and Skeleton framework.
 
 <h2>Website link:</h2>
-<p>https://muntasir2001.github.io/shopping-lister/</p>
+<p>https://shopping-lister.netlify.app/</p>
