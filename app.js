@@ -1,7 +1,8 @@
+console.log(firebase);
+
 //setting scroll to zero
 window.scrollTo(0, 0);
 
-console.log(firebase);
 
 //setting notify system
 const notify = document.querySelector('.warning');
