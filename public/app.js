@@ -1,7 +1,10 @@
-console.log(firebase);
+// console.log(firebase);
 
 //setting scroll to zero
 window.scrollTo(0, 0);
+
+//random number generator
+let i = Math.random() * 2;
 
 
 //setting notify system
@@ -35,7 +38,23 @@ const itemList = document.querySelector('.item-list');
 
 //event listeners
 form.addEventListener('submit', addItem);
+// addBtn.addEventListener('mouseup', addItem);
 itemList.addEventListener('mouseup', deleteItem);
+
+//firebase config
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+const db = firebase.firestore();
+const { serverTimestamp } = firebase.firestore.FieldValue;
+
+//get item from database
+// db.collection("items")
+// .get()
+//    .then((querySnapshot) => {
+//       querySnapshot.forEach((doc) => {
+//          console.log(doc.data());
+//       });
+//    });
 
 //add item
 function addItem(e) {
@@ -73,13 +92,24 @@ function addItem(e) {
 
       //append div (.item) inside the main div (.item-list)
       itemList.appendChild(div);
-
-      //clear out the input field after each entry
+      
+      db.collection("items").doc(`item${i}`).set({
+         item: inputField.value,
+         createdAt: serverTimestamp()
+      })
+      .then(function() {
+         console.log("Document successfully written!");
+      })
+      .catch(function(error) {
+         console.error("Error writing document: ", error);
+      });
+      
+      console.log(inputField.value);
       inputField.value = '';
 
-      //prevent default
    }
    
+   //prevent default
    e.preventDefault();
 }
 
@@ -92,3 +122,21 @@ function deleteItem(e) {
    //prevent default
    e.preventDefault();
 }
+
+//firebase connection
+// const db = firebase.firestore();
+// console.log(db);
+
+// let thingsRef; //reference to a database location  
+// let unsubscribe; //subscribe/unsubscribe to real time changes
+
+// thingsRef = db.collection('items');
+
+// //when button is clicked
+// addBtn.onclick = () => {
+   //    //add new document and generate new id
+   //    thingsRef.add({
+      //       item: inputField.value,
+      //       createdAt: serverTimestamp()
+      //    })   
+      // }

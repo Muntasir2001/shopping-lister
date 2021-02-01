@@ -1,0 +1,85 @@
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"/>
+      <link href="https://pagecdn.io/lib/skeleton/2.0.4/skeleton.css" rel="stylesheet" crossorigin="anonymous"/>
+      <link rel="stylesheet" href="design.css">
+      <title>Shopping Lister</title>
+
+      <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+      <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-analytics.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-firestore.js"></script>
+
+   </head>
+   <body>
+      <div class="container warning">
+         <h5>The application is still under maintenance.</h5>
+      </div>
+      <nav id="nav">
+         <div class="container">
+         <h2>Shopping Lister</h2>
+         </div>
+      </nav>
+      <div class="container add-product">
+      <form action="#" onsubmit="return false">
+         <label class="input-label" for="text"><h3>Add Your Item</h3></label>
+         <div class="input-field">
+            <input
+               class="u-full-width input-item"
+               type="text"
+               placeholder="Ex: 5 Apples"
+            />
+            <input id="add-btn" class="add-btn" type="button" value="Add item" />
+         </div>
+      </form>
+      </div>
+      <div class="container item-list-title">
+         <h3>Your List of Items</h3>
+      </div>
+      <div class="container item-list">
+         <!-- <div class="item">
+            <p>5 bananas</p>
+            <a class="edit" href="#">Edit</a> 
+            <a class="delete" href="#">Delete</a>
+         </div>
+         <div class="item">
+            <p>Milk</p>
+            <a class="edit" href="#">Edit</a> 
+            <a class="delete" href="#">Delete</a>
+         </div> -->
+         <!-- <div class="item">
+            <p>4 Apples</p>
+            <a class="edit" href="#">Edit</a>
+            <a class="delete" href="#">Delete</a>
+         </div>
+         <div class="item">
+            <p>10 Lemons</p>
+            <a class="edit" href="#">Edit</a>
+            <a class="delete" href="#">Delete</a>
+         </div> -->
+      </div>
+
+      <script>
+         // Your web app's Firebase configuration
+         // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+         var firebaseConfig = {
+         apiKey: "AIzaSyCwBELiVERyghwohaaUmgzGVmbLCGrNA_Q",
+         authDomain: "shopping-lister-f41d3.firebaseapp.com",
+         databaseURL:
+            "https://shopping-lister-f41d3-default-rtdb.europe-west1.firebasedatabase.app",
+         projectId: "shopping-lister-f41d3",
+         storageBucket: "shopping-lister-f41d3.appspot.com",
+         messagingSenderId: "131972953413",
+         appId: "1:131972953413:web:2c508cc59d6a8c215cba2c",
+         measurementId: "G-GDTMCHGPNK",
+         };
+         // Initialize Firebase
+         
+      </script>
+      <script src="app.js" defer></script>
+   </body>
+   </html>
