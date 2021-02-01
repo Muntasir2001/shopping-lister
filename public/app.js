@@ -37,8 +37,8 @@ const form = document.querySelector('form');
 const itemList = document.querySelector('.item-list');
 
 //event listeners
-form.addEventListener('submit', addItem);
-// addBtn.addEventListener('mouseup', addItem);
+// form.addEventListener('submit', addItem);
+addBtn.addEventListener('mouseup', addItem);
 itemList.addEventListener('mouseup', deleteItem);
 
 //firebase config
