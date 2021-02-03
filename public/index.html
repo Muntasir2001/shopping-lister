@@ -21,11 +21,13 @@
       </div>
       <nav id="nav">
          <div class="container">
-         <h2>Shopping Lister</h2>
+            <h2>Shopping Lister</h2>
          </div>
       </nav>
       <div class="container add-product">
-      <form action="#" onsubmit="addItem(); return false">
+      <!-- attrubute for form element -->
+      <!-- action="#" onsubmit="addItem(); return false" -->
+      <form id="form">
          <label class="input-label" for="text"><h3>Add Your Item</h3></label>
          <div class="input-field">
             <input
@@ -33,7 +35,7 @@
                type="text"
                placeholder="Ex: 5 Apples"
             />
-            <input id="add-btn" class="add-btn" type="button" value="Add item" />
+            <input id="add-btn" class="add-btn" type="submit" value="Add item"/>
          </div>
       </form>
       </div>
@@ -65,20 +67,24 @@
 
       <script>
          // Your web app's Firebase configuration
-         // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+         // For Firebase JS SDK v7.20.0 and later, measurementId is optional    
          var firebaseConfig = {
-         apiKey: "AIzaSyCwBELiVERyghwohaaUmgzGVmbLCGrNA_Q",
-         authDomain: "shopping-lister-f41d3.firebaseapp.com",
-         databaseURL:
+            apiKey: "AIzaSyCwBELiVERyghwohaaUmgzGVmbLCGrNA_Q",
+            authDomain: "shopping-lister-f41d3.firebaseapp.com",
+            databaseURL:
             "https://shopping-lister-f41d3-default-rtdb.europe-west1.firebasedatabase.app",
-         projectId: "shopping-lister-f41d3",
-         storageBucket: "shopping-lister-f41d3.appspot.com",
-         messagingSenderId: "131972953413",
-         appId: "1:131972953413:web:2c508cc59d6a8c215cba2c",
-         measurementId: "G-GDTMCHGPNK",
+            projectId: "shopping-lister-f41d3",
+            storageBucket: "shopping-lister-f41d3.appspot.com",
+            messagingSenderId: "131972953413",
+            appId: "1:131972953413:web:2c508cc59d6a8c215cba2c",
+            measurementId: "G-GDTMCHGPNK",
          };
-         // Initialize Firebase
-         
+         // Initialize Firebase 
+         //firebase config
+         firebase.initializeApp(firebaseConfig);
+         firebase.analytics();
+         const db = firebase.firestore();
+         db.settings({ timestampsInSnapshots: true });
       </script>
       <script src="app.js" defer></script>
    </body>

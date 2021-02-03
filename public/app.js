@@ -3,10 +3,6 @@
 //setting scroll to zero
 window.scrollTo(0, 0);
 
-//random number generator
-let i = Math.random() * 2;
-
-
 //setting notify system
 const notify = document.querySelector('.warning');
 
@@ -25,39 +21,28 @@ function notifyControl() {
    setTimeout(hideMssg, 5000);
 }
 
-// window.addEventListener('DOMContentLoaded', (e) => {
-// });
 notifyControl();
 
 //codes for adding/removing task...
 //declaring variables
 const addBtn = document.getElementById('add-btn');
 const inputField = document.querySelector('.input-item');
-const form = document.querySelector('form');
+const form = document.querySelector('#form');
 const itemList = document.querySelector('.item-list');
 
 //event listeners
-// form.addEventListener('submit', addItem);
-addBtn.addEventListener('mouseup', addItem);
+form.addEventListener('submit', addItem);
+// addBtn.addEventListener('mouseup', addItem);
 itemList.addEventListener('mouseup', deleteItem);
 
-//firebase config
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
-const db = firebase.firestore();
+//firebase timestamp functionality
 const { serverTimestamp } = firebase.firestore.FieldValue;
-
-//get item from database
-// db.collection("items")
-// .get()
-//    .then((querySnapshot) => {
-//       querySnapshot.forEach((doc) => {
-//          console.log(doc.data());
-//       });
-//    });
 
 //add item
 function addItem(e) {
+   //prevent default
+   e.preventDefault();
+
    if (inputField.value !== '') {
       //create li
       const div = document.createElement('div');
@@ -92,51 +77,80 @@ function addItem(e) {
 
       //append div (.item) inside the main div (.item-list)
       itemList.appendChild(div);
-      
-      db.collection("items").doc(`item${i}`).set({
+
+      console.log(typeof(inputField.value));
+
+      //saving data to firestore database
+      db.collection('items').add({
          item: inputField.value,
          createdAt: serverTimestamp()
-      })
-      .then(function() {
-         console.log("Document successfully written!");
-      })
-      .catch(function(error) {
-         console.error("Error writing document: ", error);
       });
       
-      console.log(inputField.value);
       inputField.value = '';
-
    }
-   
-   //prevent default
-   e.preventDefault();
 }
 
 //delete item
 function deleteItem(e) {
    if (e.target.classList.contains('delete')) {
       e.target.parentElement.remove();
+
+      //gets the id of each list
+      const id = e.target.parentElement.querySelector('p').getAttribute('data-id');
+
+      //finds the document using "doc" and by passing the "id" param and deletes it
+      db.collection('items').doc(id).delete();
    }
 
    //prevent default
    e.preventDefault();
 }
 
-//firebase connection
-// const db = firebase.firestore();
-// console.log(db);
+function getItems(items) {
+   //create li
+   const div = document.createElement('div');
+   
+   //create p
+   const p = document.createElement('p');
 
-// let thingsRef; //reference to a database location  
-// let unsubscribe; //subscribe/unsubscribe to real time changes
+   //create a tag for edit and delete
+   // const aEdit  = document.createElement('a');
+   const aDel = document.createElement('a');
 
-// thingsRef = db.collection('items');
+   //give class name
+   div.className = 'item';
+   // aEdit.className = 'edit';
+   aDel.className = 'delete';
 
-// //when button is clicked
-// addBtn.onclick = () => {
-   //    //add new document and generate new id
-   //    thingsRef.add({
-      //       item: inputField.value,
-      //       createdAt: serverTimestamp()
-      //    })   
-      // }
+   //set attribute for edit and delete button
+   // aEdit.setAttribute('href', '#');
+   aDel.setAttribute('href', '#');
+
+   //append text in p
+   p.appendChild(document.createTextNode(items.data().item));
+
+   //put identification for p eleement
+   p.setAttribute('data-id', items.id);
+
+   //append text in edit and delete button
+   // aEdit.appendChild(document.createTextNode('Edit'));
+   aDel.appendChild(document.createTextNode('Delete'));
+
+   //append p, edit and delete button inside div (.item)
+   div.appendChild(p);
+   // div.appendChild(aEdit);s
+   div.appendChild(aDel);
+
+   //append div (.item) inside the main div (.item-list)
+   itemList.appendChild(div);
+}
+
+//get item from firestore using firebase commands
+db.collection('items').get()
+   .then((data) => {
+      //get the data from firestore by using for each loop
+      data.docs.forEach(list => {
+         console.log(list.data()); //get the data from the firestore
+         getItems(list);
+      })
+   })
