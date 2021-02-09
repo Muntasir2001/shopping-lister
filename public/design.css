@@ -25,6 +25,7 @@ body {
 
 /* homepage */
 /* notify */
+/* warning */
 .warning {
    border: 4px solid #D9004C;
    margin-top: 20px;
@@ -35,17 +36,35 @@ body {
    background: rgb(217,0,76, 0.4);
 }
 
-.warning-open, #warning {
-   display: flex;
-}
-
-.warning-close {
-   display: none;
-}
-
 .warning h5 {
    font-size: 2rem;
 }
+
+/* information */
+.information {
+   border: 4px solid #198754;
+   margin-top: 20px;
+   color: #E3E3E3;
+   padding: 10px;
+   align-items: center;
+   border-radius: 10px;
+   background: rgb(25,135,84, 0.4);
+}
+
+.information h5 {
+   font-size: 2rem;
+}
+
+/* general notify CSS */
+.notify-open {
+   display: flex;
+}
+
+.notify-close {
+   display: none;
+}
+
+/* end of notify */
 
 /* navbar */
 #nav {
@@ -70,22 +89,22 @@ body {
    align-items: center;
 } */
 
-.add-product form .input-label {
+.add-product #item-form .input-label {
    color: #e79e19;
    font-size: 2.3rem;
 }
 
-.add-product form input[type="text"] {
+.add-product #item-form input[type="text"] {
    max-width: 500px;
    background-color: #E3E3E3;
 }
 
-.add-product form .add-btn {
+.add-product #item-form .add-btn {
    border-color: #E3E3E3;
    color: #E3E3E3;
 }
 
-.add-product form .add-btn:hover {
+.add-product #item-form .add-btn:hover {
    border-color: #e79e19;
    color: #e79e19;
 }
@@ -133,4 +152,101 @@ body {
 
 .item-list .item .edit {
    color: #23D99C;
+}
+
+/* login/register page */
+/* tabs */
+#form .tabs ul {
+   display: flex;
+   color: #e3e3e3;
+   list-style: none;
+   justify-content: center;
+}
+
+#form .tabs ul li {
+   padding: 20px 50px;
+   text-align: center;
+   border-bottom: 1px solid #E3E3E3;
+   width: 100%;
+}
+
+/* #form .tabs ul .login-tab {
+   border-right: 1px solid #fff;
+} */
+
+#form .tabs ul .register-tab {
+   border-left: 1px solid #e3e3e3;
+}
+
+#form .tabs ul .login-tab:hover {
+   cursor: pointer;
+   color: #e79e19;
+   border-bottom: 1px solid #e79e19;
+}
+
+#form .tabs ul .register-tab:hover {
+   cursor: pointer;
+   color: #e79e19;
+   border-bottom: 1px solid #e79e19;
+}
+
+/* form */
+#form {
+   border: 2px solid #E3E3E3;
+   border-radius: 10px;
+   /* padding: 50px; */
+   max-width: 500px;
+   margin: 50px auto;
+}
+
+#form #forms {
+   padding: 20px 50px;
+}
+
+#form #forms .login, #form #forms .register {
+   display: flex;
+   flex-flow: column;
+   align-items: center;
+}
+
+#forms .login label, #forms .register label {
+   color: #E3E3E3;
+}
+
+#forms .login input[type="email"], #forms .register label input[type="email"] {
+   background-color: #cccccc;
+   border: 0px;
+}
+
+#forms .login input[type="password"], #forms .register label input[type="password"] {
+   background-color: #cccccc;
+   border: 0px;
+}
+
+#forms .login input[type="submit"], #forms .register label input[type="submit"] {
+   display: block;
+   margin-top: 15px;
+   border-color: #e3e3e3;
+   color: #E3E3E3;
+}
+
+#forms .login input[type="submit"]:hover, #forms .register label input[type="submit"]:hover {
+   border-color: #e79e19;
+   color: #e79e19;
+}
+
+/* default form to show */
+#form #forms #register-form {
+   display: none;
+}
+
+#form .tabs ul .login-tab {
+   color: #e79e19;
+   border-bottom: 1px solid #e79e19;
+}
+
+/* end of default behavior code */
+
+#form #forms input {
+   width: 30rem;
 }

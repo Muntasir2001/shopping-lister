@@ -1,33 +1,10 @@
 // console.log(firebase);
 
-//setting scroll to zero
-window.scrollTo(0, 0);
-
-//setting notify system
-const notify = document.querySelector('.warning');
-
-function hideMssg() {
-   notify.classList.remove("warning-open");
-   notify.classList.add("warning-close");
-}
-
-function showMssg() {
-   notify.classList.remove("warning-close");
-   notify.classList.add("warning-open");
-}
-
-function notifyControl() {
-   showMssg();
-   setTimeout(hideMssg, 5000);
-}
-
-notifyControl();
-
 //codes for adding/removing task...
 //declaring variables
 const addBtn = document.getElementById('add-btn');
 const inputField = document.querySelector('.input-item');
-const form = document.querySelector('#form');
+const form = document.querySelector('#item-form');
 const itemList = document.querySelector('.item-list');
 
 //event listeners
@@ -38,7 +15,7 @@ itemList.addEventListener('mouseup', deleteItem);
 //firebase timestamp functionality
 const { serverTimestamp } = firebase.firestore.FieldValue;
 
-//add item
+//add item to the frontend
 function addItem(e) {
    //prevent default
    e.preventDefault();

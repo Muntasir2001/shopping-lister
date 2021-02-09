@@ -17,8 +17,12 @@
    </head>
    <body>
       <div class="container warning">
+         <h5 class="warn-text">The application is still under maintenance.</h5>
+      </div>
+      <div class="container information">
          <h5>The application is still under maintenance.</h5>
       </div>
+
       <nav id="nav">
          <div class="container">
             <h2>Shopping Lister</h2>
@@ -27,17 +31,17 @@
       <div class="container add-product">
       <!-- attrubute for form element -->
       <!-- action="#" onsubmit="addItem(); return false" -->
-      <form id="form">
-         <label class="input-label" for="text"><h3>Add Your Item</h3></label>
-         <div class="input-field">
-            <input
-               class="u-full-width input-item"
-               type="text"
-               placeholder="Ex: 5 Apples"
-            />
-            <input id="add-btn" class="add-btn" type="submit" value="Add item"/>
-         </div>
-      </form>
+         <form id="item-form">
+            <label class="input-label" for="text"><h3>Add Your Item</h3></label>
+            <div class="input-field">
+               <input
+                  class="u-full-width input-item"
+                  type="text"
+                  placeholder="Ex: 5 Apples"
+               />
+               <input id="add-btn" class="add-btn" type="submit" value="Add item"/>
+            </div>
+         </form>
       </div>
       <div class="container item-list-title">
          <h3>Your List of Items</h3>
@@ -86,6 +90,7 @@
          const db = firebase.firestore();
          db.settings({ timestampsInSnapshots: true });
       </script>
+      <script src="notify.js" defer></script>
       <script src="app.js" defer></script>
    </body>
    </html>
