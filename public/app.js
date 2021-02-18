@@ -155,6 +155,6 @@ auth.onAuthStateChanged((user) => {
       })
    } else {
       console.log("An user has logged out");
-      window.location.href = "http://127.0.0.1:5501/public/auth.html";
+      window.location.href = "https://shopping-lister-f41d3.web.app/auth.html";
    }
 });
