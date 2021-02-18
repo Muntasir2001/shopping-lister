@@ -63,7 +63,7 @@ function loginSubmit(e) {
          loginPass.value = '';
 
          infoNotifyControl("Login Successful!");
-         window.location.href = "https://shopping-lister-f41d3.web.app/index.html";
+         window.location.href = "https://shopping-lister-f41d3.web.app";
       });
 }
 
