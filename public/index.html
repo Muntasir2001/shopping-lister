@@ -13,6 +13,7 @@
       <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
       <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-analytics.js"></script>
       <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
 
    </head>
    <body>
@@ -24,8 +25,9 @@
       </div>
 
       <nav id="nav">
-         <div class="container">
+         <div class="nav-container container">
             <h2>Shopping Lister</h2>
+            <a id="logout-btn" href="#">Log Out</a>
          </div>
       </nav>
       <div class="container add-product">
@@ -89,6 +91,8 @@
          firebase.analytics();
          const db = firebase.firestore();
          db.settings({ timestampsInSnapshots: true });
+         //make auth ref
+         const auth = firebase.auth();
       </script>
       <script src="notify.js" defer></script>
       <script src="app.js" defer></script>

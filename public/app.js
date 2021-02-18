@@ -1,5 +1,3 @@
-// console.log(firebase);
-
 //codes for adding/removing task...
 //declaring variables
 const addBtn = document.getElementById('add-btn');
@@ -7,10 +5,18 @@ const inputField = document.querySelector('.input-item');
 const form = document.querySelector('#item-form');
 const itemList = document.querySelector('.item-list');
 
+const logoutBtn = document.getElementById('logout-btn');
+
+//global storage for email of users
+let userEmail;
+
 //event listeners
 form.addEventListener('submit', addItem);
 // addBtn.addEventListener('mouseup', addItem);
 itemList.addEventListener('mouseup', deleteItem);
+
+//logout btn event listener
+logoutBtn.addEventListener('mouseup', logoutUser);
 
 //firebase timestamp functionality
 const { serverTimestamp } = firebase.firestore.FieldValue;
@@ -55,10 +61,10 @@ function addItem(e) {
       //append div (.item) inside the main div (.item-list)
       itemList.appendChild(div);
 
-      console.log(typeof(inputField.value));
+      // console.log(typeof(auth.getU));
 
       //saving data to firestore database
-      db.collection('items').add({
+      db.collection(`items-${userEmail}`).add({
          item: inputField.value,
          createdAt: serverTimestamp()
       });
@@ -76,7 +82,7 @@ function deleteItem(e) {
       const id = e.target.parentElement.querySelector('p').getAttribute('data-id');
 
       //finds the document using "doc" and by passing the "id" param and deletes it
-      db.collection('items').doc(id).delete();
+      db.collection(`items-${userEmail}`).doc(id).delete();
    }
 
    //prevent default
@@ -122,12 +128,33 @@ function getItems(items) {
    itemList.appendChild(div);
 }
 
-//get item from firestore using firebase commands
-db.collection('items').get()
-   .then((data) => {
-      //get the data from firestore by using for each loop
-      data.docs.forEach(list => {
-         console.log(list.data()); //get the data from the firestore
-         getItems(list);
+//logout user - auth functionality
+function logoutUser(e) {
+   e.preventDefault();
+
+   auth.signOut()
+      .then(() => console.log("user has logged out"));
+   // logout("User logged out");
+   // window.location.href = "http://127.0.0.1:5501/public/auth.html";
+}
+
+//listen for auth status changes
+auth.onAuthStateChanged((user) => {
+   if (user) {
+      console.log(`User ${user.email} has logged in`);
+      userEmail = user.email;
+
+      //get item from firestore using firebase commands
+      db.collection(`items-${userEmail}`).get()
+      .then((data) => {
+         //get the data from firestore by using for each loop
+         data.docs.forEach(list => {
+            // console.log(list.data()); //get the data from the firestore
+            getItems(list);
+         })
       })
-   })
+   } else {
+      console.log("An user has logged out");
+      window.location.href = "http://127.0.0.1:5501/public/auth.html";
+   }
+});

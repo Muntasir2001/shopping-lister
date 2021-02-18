@@ -1,3 +1,5 @@
+// const { auth } = require("firebaseui");
+
 // let ui = new firebaseui.auth.AuthUI(firebase.auth());
 const tabs = document.querySelector('.tabs');
 const loginTab = document.querySelector('.login-tab');
@@ -55,7 +57,14 @@ function loginSubmit(e) {
    //get password
    const password = loginPass.value;
 
+   auth.signInWithEmailAndPassword(email, password)
+      .then(cred =>  {
+         loginEmail.value = '';
+         loginPass.value = '';
 
+         infoNotifyControl("Login Successful!");
+         window.location.href = "http://127.0.0.1:5501/public/index.html";
+      });
 }
 
 //registration form submission
@@ -71,10 +80,23 @@ function regSubmit(e) {
    //register the user
    auth.createUserWithEmailAndPassword(email, password)
       .then(cred => {
-         console.log(cred);
          regEmail.value = '';
          regPass.value = '';
          
          infoNotifyControl("Registration Successful!");
       })
 }
+
+//logout 
+function logout(mssg) {
+   console.log(mssg);
+}
+
+//listen for auth status changes
+auth.onAuthStateChanged((user) => {
+   if (user) {
+      console.log(`User ${user.email} has logged in`);
+   } else {
+      console.log("An user has logged out");
+   }
+});
