@@ -8,7 +8,7 @@ const itemList = document.querySelector('.item-list');
 const logoutBtn = document.getElementById('logout-btn');
 
 //global storage for email of users
-let userEmail;
+let userUID;
 
 //event listeners
 form.addEventListener('submit', addItem);
@@ -64,7 +64,7 @@ function addItem(e) {
       // console.log(typeof(auth.getU));
 
       //saving data to firestore database
-      db.collection(`items-${userEmail}`).add({
+      db.collection(`items-${userUID}`).add({
          item: inputField.value,
          createdAt: serverTimestamp()
       });
@@ -82,7 +82,7 @@ function deleteItem(e) {
       const id = e.target.parentElement.querySelector('p').getAttribute('data-id');
 
       //finds the document using "doc" and by passing the "id" param and deletes it
-      db.collection(`items-${userEmail}`).doc(id).delete();
+      db.collection(`items-${userUID}`).doc(id).delete();
    }
 
    //prevent default
@@ -142,10 +142,11 @@ function logoutUser(e) {
 auth.onAuthStateChanged((user) => {
    if (user) {
       console.log(`User ${user.email} has logged in`);
-      userEmail = user.email;
+      console.log(user);
+      userUID = user.uid;
 
       //get item from firestore using firebase commands
-      db.collection(`items-${userEmail}`).get()
+      db.collection(`items-${userUID}`).get()
       .then((data) => {
          //get the data from firestore by using for each loop
          data.docs.forEach(list => {
