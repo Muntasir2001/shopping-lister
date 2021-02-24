@@ -10,6 +10,10 @@ const logoutBtn = document.getElementById('logout-btn');
 //global storage for email of users
 let userUID;
 
+//store current url
+let currentURL = window.location.href;
+let newURL;
+
 //event listeners
 form.addEventListener('submit', addItem);
 // addBtn.addEventListener('mouseup', addItem);
@@ -20,6 +24,26 @@ logoutBtn.addEventListener('mouseup', logoutUser);
 
 //firebase timestamp functionality
 const { serverTimestamp } = firebase.firestore.FieldValue;
+
+//url editing for redirecting purpose ###TESTING###
+// function urlRedirect(url = 'index.html') {
+//    let urlElements = currentURL.split('/');
+//    let filename = urlElements.pop();
+//    console.log(urlElements);
+//    console.log(filename);
+
+//    if (filename === 'index.html' || filename === 'auth.html') {
+//       filename = url;
+//       urlElements.push(filename);
+//       console.log(urlElements);
+//       newURL = urlElements.join('');
+//       console.log(currentURL);
+//       console.log(newURL);
+//    }
+
+// }
+
+// urlRedirect();
 
 //add item to the frontend
 function addItem(e) {
@@ -64,7 +88,7 @@ function addItem(e) {
       // console.log(typeof(auth.getU));
 
       //saving data to firestore database
-      db.collection(`items-${userUID}`).add({
+      db.collection(`${userUID}`).add({
          item: inputField.value,
          createdAt: serverTimestamp()
       });
@@ -82,7 +106,7 @@ function deleteItem(e) {
       const id = e.target.parentElement.querySelector('p').getAttribute('data-id');
 
       //finds the document using "doc" and by passing the "id" param and deletes it
-      db.collection(`items-${userUID}`).doc(id).delete();
+      db.collection(`${userUID}`).doc(id).delete();
    }
 
    //prevent default
@@ -135,18 +159,16 @@ function logoutUser(e) {
    auth.signOut()
       .then(() => console.log("user has logged out"));
    // logout("User logged out");
-   // window.location.href = "http://127.0.0.1:5501/public/auth.html";
+   // window.location.href = `${url}/auth.html`;
 }
 
 //listen for auth status changes
 auth.onAuthStateChanged((user) => {
    if (user) {
       console.log(`User ${user.email} has logged in`);
-      console.log(user);
-      userUID = user.uid;
 
       //get item from firestore using firebase commands
-      db.collection(`items-${userUID}`).get()
+      db.collection(`${userUID}`).get()
       .then((data) => {
          //get the data from firestore by using for each loop
          data.docs.forEach(list => {
@@ -156,6 +178,9 @@ auth.onAuthStateChanged((user) => {
       })
    } else {
       console.log("An user has logged out");
-      window.location.href = "https://shopping-lister-f41d3.web.app/auth.html";
+      // window.location.href = `${url}/auth.html`;
+      let dummyURL = 'auth.html'
+      history.pushState({dummyURL}, '', 'auth.html');
+      location.reload();
    }
 });

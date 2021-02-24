@@ -14,6 +14,9 @@ const loginPass = document.getElementById('login-password');
 const regEmail = document.getElementById('reg-email');
 const regPass = document.getElementById('reg-password');
 
+//store current url
+let url = window.location.hostname;
+
 //event listeners for the tabs
 loginTab.addEventListener('click', toLoginTab);
 regTab.addEventListener('click', toRegTab);
@@ -62,8 +65,12 @@ function loginSubmit(e) {
          loginEmail.value = '';
          loginPass.value = '';
 
+         let dummyURL = 'index.html';
+
          infoNotifyControl("Login Successful!");
-         window.location.href = "https://shopping-lister-f41d3.web.app";
+         // window.location.href = `${url}/index.html`;
+         history.pushState({dummyURL}, '', 'index.html');
+         location.reload();
       });
 }
 
